@@ -23,3 +23,32 @@ It's intended to be used with any of the `mod_XXXXX` modules that export REMOTE_
     }
 }
 ```
+
+## Apache configuration Example
+In order to securely insert HTTP headers, you need to set up a web server that makes sure those values are meaningfull
+and extracted from the authentication module.
+
+You can easily do this by putting an Apache server in front of your application, in such a way that the `autPath` and `callbackPath` are protected, and leveraging the generation of the trusted HTTP headers.
+
+An example configuration would be the following:
+
+```
+  ProxyPassInterpolateEnv On
+  ProxyPass / "http://localhost:3000/"
+  ProxyPassReverse / "http://localhost:3000/"
+  RequestHeader set Proxy-Remote-User %{GSS_NAME}e
+
+  <Proxy *>
+      Order deny,allow
+      Allow from all
+  </Proxy>
+
+  <Location /auth/moonshot/>
+    AuthType GSSAPI
+    AuthName "Moonshot Login"
+    GssapiConnectionBound On
+    Order allow,deny
+    Require valid-user
+    Allow from all
+  </Location>
+```
