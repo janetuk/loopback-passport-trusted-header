@@ -16,7 +16,7 @@ It's intended to be used with any of the `mod_XXXXX` modules that export REMOTE_
         "authOptions": {
           "header_name": "proxy-remote-user"
         },
-        "passReqToVerify": true,
+        "passReqToCallback": true,
         "session": true,
         "json": true,
         "autoLogin": true
