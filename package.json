@@ -1,0 +1,19 @@
+{
+  "name": "loopback-passport-trusted-header",
+  "version": "0.0.1",
+  "description": "A custom strategy for passport.js for use with loopback.io for authentication by a trusted HTTP header",
+  "main": "./lib",
+  "repository": "https://gitlab.ci.ti.ja.net/moonshot/loopback-passport-trusted-header.git",
+  "author": "Alejandro Perez",
+  "license": "BSD-3",
+  "engines": {
+    "node": ">=4.0.0",
+    "yarn": ">=0.14.0"
+  },
+  "dependencies": {
+    "passport-strategy": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.0"
+  }
+}
